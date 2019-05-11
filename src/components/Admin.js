@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AjouterRecette from './AjouterRecette';
+import AdminForm from './AdminForm';
 
 class Admin extends Component {
 	constructor(props) {
@@ -7,11 +8,21 @@ class Admin extends Component {
 		this.state = {}
 	}
 	render() {
+		const {recettes, ajouterRecette, majRecette, chargerExample} = this.props
 		return (
 			<div className="cards">
-				<AjouterRecette ajouterRecette={this.props.ajouterRecette}></AjouterRecette>
+				<AjouterRecette ajouterRecette={ajouterRecette}></AjouterRecette>
+				{
+					Object.keys(recettes)
+					 .map(key => <AdminForm
+							key={key}
+							id={key}
+							majRecette={majRecette}
+							recettes={recettes}
+					 />) 
+				}
 				<footer>
-					<button onClick={this.props.chargerExample}>Remplir</button>
+					<button onClick={chargerExample}>Remplir</button>
 				</footer>
 			</div>
 

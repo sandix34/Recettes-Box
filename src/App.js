@@ -15,11 +15,11 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       pseudo: this.props.match.params.pseudo,
       recettes: {}
-      
-     }
+
+    }
   }
 
   componentDidMount() {
@@ -29,14 +29,19 @@ class App extends Component {
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     base.removeBinding(this.ref)
   }
 
   ajouterRecette = recette => {
     const recettes = { ...this.state.recettes }
+    recettes[`recette-${Date.now()}`] = recette
+    this.setState({ recettes })
+  }
 
-    recettes[`recette-${ Date.now() }`] = recette
+  majRecette = (key, newRecette) => {
+    const recettes = { ...this.state.recettes }
+    recettes[key] = newRecette
     this.setState({ recettes })
   }
 
@@ -45,21 +50,23 @@ class App extends Component {
 
   render() {
     const cards = Object.keys(this.state.recettes)
-      .map(key => <Card  key={ key } details={ this.state.recettes[key] }></Card> )
-    
-    return ( 
+      .map(key => <Card key={key} details={this.state.recettes[key]}></Card>)
+
+    return (
       <div className='box'>
-        <Header pseudo={ this.state.pseudo }/>
+        <Header pseudo={this.state.pseudo} />
         <div className='cards'>
-          { cards }
+          {cards}
         </div>
         <Admin
-          ajouterRecette={ this.ajouterRecette }
-          chargerExample={ this.chargerExample }
+          recettes={this.state.recettes}
+          majRecette={this.majRecette}
+          ajouterRecette={this.ajouterRecette}
+          chargerExample={this.chargerExample}
         ></Admin>
       </div>
-     );
+    );
   }
 }
- 
+
 export default App;
