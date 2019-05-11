@@ -10,14 +10,20 @@ class AjouterRecette extends Component {
 			instructions: ''
 		}
 	}
+
+	handleCchange = event => {
+		const {name, value} = event.target 
+			this.setState({[name]: value})
+	}
+
 	render() {
 		return (
 			<div className="card">
 				<form  className="admin-form ajouter-rectee">
-					<input name="nom" type="text" placeholder="nom de la recette"/>
-					<input name="image" type="text" placeholder="nom de l'image"/>
-					<textarea name="ingredients" rows="3" placeholder="liste des ingrédients"></textarea>
-					<textarea name="instructions" rows="15" placeholder="liste des instruction"></textarea>
+					<input value={this.state.nom} onChange={this.handleCchange} name="nom" type="text" placeholder="nom de la recette"/>
+					<input value={this.state.image} onChange={this.handleCchange} name="image" type="text" placeholder="nom de l'image"/>
+					<textarea value={this.state.ingredients} onChange={this.handleCchange} name="ingredients" rows="3" placeholder="liste des ingrédients"></textarea>
+					<textarea value={this.state.instructions} onChange={this.handleCchange} name="instructions" rows="15" placeholder="liste des instruction"></textarea>
 				</form>
 			</div>
 		);
