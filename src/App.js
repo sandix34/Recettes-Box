@@ -29,9 +29,15 @@ class App extends Component {
     })
   }
 
-  //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
   componentWillUnmount () {
     base.removeBinding(this.ref)
+  }
+
+  ajouterRecette = recette => {
+    const recettes = { ...this.state.recettes }
+
+    recettes[`recette-${ Date.now() }`] = recette
+    this.setState({ recettes })
   }
 
   chargerExample = () => this.setState({ recettes })
@@ -48,6 +54,7 @@ class App extends Component {
           { cards }
         </div>
         <Admin
+          ajouterRecette={ this.ajouterRecette }
           chargerExample={ this.chargerExample }
         ></Admin>
       </div>
