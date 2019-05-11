@@ -8,7 +8,7 @@ class Admin extends Component {
 		this.state = {}
 	}
 	render() {
-		const {recettes, ajouterRecette, majRecette, chargerExample} = this.props
+		const {recettes, ajouterRecette, majRecette, supprimerRecette, chargerExample} = this.props
 		return (
 			<div className="cards">
 				<AjouterRecette ajouterRecette={ajouterRecette}></AjouterRecette>
@@ -18,6 +18,7 @@ class Admin extends Component {
 							key={key}
 							id={key}
 							majRecette={majRecette}
+							supprimerRecette={supprimerRecette}
 							recettes={recettes}
 					 />) 
 				}
