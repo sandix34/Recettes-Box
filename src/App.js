@@ -7,6 +7,9 @@ import recettes from './recettes';
 import Admin from './components/Admin';
 import Card from './components/Card';
 
+// Firebase
+import base from './base';
+
 class App extends Component {
 
   constructor(props) {
@@ -17,6 +20,18 @@ class App extends Component {
       recettes: {}
       
      }
+  }
+
+  componentDidMount() {
+    this.ref = base.syncState(`/${this.state.pseudo}/recettes`, {
+      context: this,
+      state: 'recettes'
+    })
+  }
+
+  //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
+  componentWillUnmount () {
+    base.removeBinding(this.ref)
   }
 
   chargerExample = () => this.setState({ recettes })
