@@ -1,3 +1,15 @@
+### Ce projet  a été réalisé dans le cadre d' une formation e-learning  React.
+
+## Fonctionnalités du projet
+
+- Gestion de formulaire
+
+- Ajout & supression d'une recette
+  
+
+![recetteBox](https://user-images.githubusercontent.com/44428775/58251486-0c6a3780-7d64-11e9-868e-4f28f90541a7.gif)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
